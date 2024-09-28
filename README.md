@@ -4,10 +4,10 @@ Ensure that games.txt is present in the same working directory as the codes.
 
 command to compile:
 
-`g++ main.cc disk.cc -o a`
+`g++ -o main main.cpp bptree.cpp disk.cpp`
 
 then run .exe file
 
-`./a` 
+`./main` 
 
-**a.exe** is an executable from two compiled files: *main.cc* and *disk.cc*
+**main.exe** is an executable from three compiled files: *main.cpp* , *bptree.cpp* and *disk.cpp*

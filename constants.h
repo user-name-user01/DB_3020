@@ -1,50 +1,35 @@
-#ifndef CONSTANTS_H
-#define CONSTANTS_H
+#ifndef STRUCTS_H
+#define STRUCTS_H
 
-#include <stdint.h>
+#include <vector>
 
-#include <string.h>
+typedef unsigned short int usint; //16-bit integer
+typedef unsigned int uint; //32-bit integer
+typedef unsigned char uchar; //8-bit value
 
-#include <assert.h>
+// Columns in record is rearranged to account for padding
+struct Record {
+    uint team_id_home; // 4 bytes
+    float fg_pct_home; // 4 bytes
+    float ft_pct_home; // 4 bytes
+    float fg3_pct_home; // 4 bytes
+    usint game_date_int; // number of days that elapsed since 01/01/1900 - 2 bytes
+    char pts_home; // 1 byte
+    char ast_home; // 1 byte
+    char reb_home; //1 byte
+    bool home_team_wins; // 1 byte
+};
 
-#include <stdio.h>
+struct Node {
+    bool isLeaf;
+    std::vector<float> keys; 
+    std::vector<Node*> ptrs; // pointers to blocks
+    std::vector<std::vector<Record*>> records; // pointers to records (only for leaf nodes)
+    Node* nextNodePtr; // pointer to next node (only for leaf nodes)
 
-#include <math.h>
+    Node(bool isLeaf) {
+        this->isLeaf = isLeaf;
+    }
+};
 
-#include <string>
-
-#define FIRST_DATA_BLOCK 1
-#define DISK_SIZE 100 * 1024 * 1024
-#define RECORD_SIZE sizeof(Record)
-#define BLOCK_SIZE sizeof(DataBlock)
-#define NUM_BLOCKS DISK_SIZE / BLOCK_SIZE
-#define RECORDS_PER_BLOCK BLOCK_SIZE / RECORD_SIZE
-
-#define ASSERT(cond, msg, args...) assert((cond) || !fprintf(stderr, (msg "\n"), args))
-
-typedef struct Record {
-    bool occupied;
-    char GAME_DATE_EST[9];
-    uint32_t TEAM_ID_home;
-    uint16_t PTS_home;
-    char FG_PCT_home[5];
-    float FT_PCT_home;
-    float FG3_PCT_home;
-    uint16_t AST_home;
-    uint16_t REB_home;
-    bool HOME_TEAM_WINS;
-}
-Record;
-
-typedef struct DataBlock {
-    Record records[10];
-}
-DataBlock;
-
-typedef struct RecordPointer {
-    uint32_t blockNumber: 28;
-    uint32_t recordIndex: 4;
-}
-RecordPointer;
-
-#endif
+#endif 
