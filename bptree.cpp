@@ -158,6 +158,23 @@ Node* BPTree::splitInternalNode(Node* currNode, float *key) {
     return splitNode;
 }
 
+Node* BPTree::searchNode(float key) {
+    Node* curNode = getRoot();
+    // If the tree is empty, return nullptr
+    if (curNode == nullptr)
+        return nullptr;
+    this->numNodesAcc++;
+    int idx;
+    // Continue traversing the tree until a leaf node is reached
+    while (!curNode->isLeaf) {
+        // Find the index where the key would be inserted in the current node's keys
+        idx = std::upper_bound(curNode->keys.begin(), curNode->keys.end(), key) - curNode->keys.begin();
+        curNode = curNode->ptrs.at(idx);
+        this->numNodesAcc++;
+    }
+    return curNode;
+}
+
 std::vector<Record*>* BPTree::searchRecord(float key) {
     Node* curNode = getRoot();
 

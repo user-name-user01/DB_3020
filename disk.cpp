@@ -46,6 +46,7 @@ Record* Disk::writeRecord(Record record) {
         numOfUsedBlks++;
     currentBlkUsedMem += recordSize;
     *recordAddress = record;
+    noOfRecords++;
     return recordAddress;
 }
 

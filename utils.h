@@ -23,7 +23,6 @@ namespace utils {
             return 0;
         }
         string line;
-        int numOfRecords = 0;
         getline(inputFile, line);
         while (getline(inputFile, line)) {
             istringstream iss(line);
@@ -38,9 +37,10 @@ namespace utils {
             getline(iss, REB_home, '\t');
             getline(iss, HOME_TEAM_WINS, '\t');
 
-            // Check if the record is relevant (PTS_home field should not be empty)
-            if (PTS_home == "") 
-                continue;          
+            if (PTS_home.empty() || FG_PCT_home.empty() || FT_PCT_home.empty() || FG3_PCT_home.empty()) {
+                continue; // Skip this record if any critical field is empty
+            }        
+
             Record record = {
                 stoul(TEAM_ID_home),
                 stof(FG_PCT_home),
@@ -53,11 +53,12 @@ namespace utils {
                 HOME_TEAM_WINS == "1" ? true : false
             };
             Record* recordPtr = (*disk).writeRecord(record);
-            tree->insert(record.fg_pct_home, recordPtr);
-            numOfRecords++; 
+            if (recordPtr){
+                tree->insert(record.fg_pct_home, recordPtr);
+            }
         }
         inputFile.close(); // Close the input file
-        return numOfRecords; // Return the total number of records processed
+        return disk->getNoOfRecords(); // Return the total number of records processed (-1 takes into account the last empty)
     }
 }
 

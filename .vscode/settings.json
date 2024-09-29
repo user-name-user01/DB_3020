@@ -3,6 +3,10 @@
         "string": "cpp",
         "vector": "cpp",
         "fstream": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "unordered_set": "cpp",
+        "limits": "cpp",
+        "xutility": "cpp"
     }
 }

@@ -14,6 +14,7 @@ private:
     size_t recordSize;
     uint numOfUsedBlks;
     size_t currentBlkUsedMem;
+    uint noOfRecords;
 
     bool allocateBlock();
 
@@ -33,6 +34,8 @@ public:
     int getBlockId(Record *record);
 
     Record *getRecord(int blockIdx, size_t recordOffset); 
+
+    int getNoOfRecords(){ return noOfRecords;}
 };
 
 #endif
