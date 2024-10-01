@@ -12,6 +12,7 @@ Disk::Disk(size_t size, size_t blockSize, size_t recordSize) {
     this->recordSize = recordSize;
     numOfUsedBlks = 0;
     currentBlkUsedMem = 0;
+    noOfRecords = 0;
 }
 
 Disk::~Disk() {
