@@ -10,6 +10,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <cstring>
 
 using namespace std;
 
@@ -39,7 +40,7 @@ namespace utils {
 
             if (PTS_home.empty() || FG_PCT_home.empty() || FT_PCT_home.empty() || FG3_PCT_home.empty()) {
                 continue; // Skip this record if any critical field is empty
-            }        
+            }
 
             Record record = {
                 stoul(TEAM_ID_home),
@@ -47,12 +48,15 @@ namespace utils {
                 stof(FT_PCT_home),
                 stof(FG3_PCT_home),
                 usint(date::dateStringToDaysElapsed(GAME_DATE_EST)),
-                static_cast<char>(stoi(PTS_home)),
-                static_cast<char>(stoi(AST_home)),
-                static_cast<char>(stoi(REB_home)),
+                static_cast<short>(stoi(PTS_home)),
+                static_cast<short>(stoi(AST_home)),
+                static_cast<short>(stoi(REB_home)),
                 HOME_TEAM_WINS == "1" ? true : false
             };
+
+            // cout << record.pts_home << " | " << endl;
             Record* recordPtr = (*disk).writeRecord(record);
+            
             if (recordPtr){
                 tree->insert(record.fg_pct_home, recordPtr);
             }

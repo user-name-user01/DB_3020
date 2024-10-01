@@ -8,5 +8,6 @@
         "unordered_set": "cpp",
         "limits": "cpp",
         "xutility": "cpp"
-    }
+    },
+    "C_Cpp.default.compilerPath": "C:\\msys64\\ucrt64\\bin\\g++.exe"
 }
