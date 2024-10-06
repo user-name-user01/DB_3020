@@ -2,7 +2,7 @@
 
 Ensure that games.txt is present in the same working directory as the codes. 
 
-Before you start, make sure you have **MinGW64** installed with the **g++ compiler**. You can download MinGW from [MinGW-w64](http://mingw-w64.org/doku.php).
+Before you start, make sure you have **MinGW64** installed with the **g++ compiler**. You can download MinGW from [MinGW-w64](https://www.mingw-w64.org/downloads/).
 
 command to compile:
 
