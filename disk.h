@@ -16,14 +16,10 @@ private:
     size_t currentBlkUsedMem;
     uint noOfRecords;
 
-    bool allocateBlock();
-
 public:
     Disk(size_t size, size_t blockSize, size_t recordSize);
 
     ~Disk();
-
-    Record* writeRecord(Record record);
 
     int getNumBlks() {return numOfUsedBlks;}
 
@@ -31,11 +27,15 @@ public:
 
     int getBlkMaxRecords() {return floor(blockSize / recordSize);}
 
+    int getNoOfRecords(){ return noOfRecords;}
+
+    bool allocateBlock();
+
+    Record* writeRecord(Record record);
+
     int getBlockId(Record *record);
 
     Record *getRecord(int blockIdx, size_t recordOffset); 
-
-    int getNoOfRecords(){ return noOfRecords;}
 };
 
 #endif

@@ -1,5 +1,5 @@
-#ifndef UTILS_H
-#define UTILS_H
+#ifndef READFILE_H
+#define READFILE_H
 
 #include "disk.h"
 #include "bptree.h"
@@ -14,7 +14,7 @@
 
 using namespace std;
 
-namespace utils {
+namespace readfile {
 
     // Function to read a file and load the records into disk and B+ tree.
     // The file is expected to be tab-separated, containing game data.

@@ -25,36 +25,26 @@ public:
 
     int getDepth() {return depth;}
 
-    Node* searchNode(float key);
+    void resetNumNodesAcc() { this->numNodesAcc = 0; }
+
+    int getNumNodesAcc() { return numNodesAcc; }
+
+    void printNode(Node* node);
+    
+    void printTree();
 
     void setRoot(Node *node);
 
     void insert(float key, Record *recordPtr);
 
-    std::vector<Record*>* searchRecord(float key);
-    //returns a pointer to a vector containing Record pointers
-
-    void printTree();
-
     Node* splitLeafNode(Node* currNode);
 
     Node* splitInternalNode(Node* currNode, float* key);
 
-    void deleteKey(float key);
-    
-    Node *findParentNode(Node *currNode, Node *childNode);
-    
-    void removeInternal(int key, Node *parentNode, Node *nodeToDelete);
-    
-    void updateParentKeys(Node *currNode, Node *parentNode, int parentIndex, std::vector<Node *> &parents, std::vector<int> &prevIndexs);
+    Node* searchNode(float key);
 
-    void printNode(Node* node);
+    std::vector<Record*>* searchRecord(float key);
 
-    void resetNumNodesAcc() { this->numNodesAcc = 0; }
-
-    int getNumNodesAcc() { return numNodesAcc; }
-    
-    void deleteRecordsBelowThreshold(Node * root, float threshold);
 };
 
 #endif
