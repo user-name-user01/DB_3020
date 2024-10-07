@@ -26,7 +26,7 @@ namespace date {
         std::tm given_date = {};
         given_date.tm_mday = day;
         given_date.tm_mon = month - 1; // month - 1 as UNIX Jan is 0
-        given_date.tm_year = year - 1900; // years since 1900
+        given_date.tm_year = year - 1900;
 
         // Arithmetic time conversion
         time_t givenTime = mktime(&given_date);

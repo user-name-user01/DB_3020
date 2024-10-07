@@ -15,7 +15,7 @@ struct Record {
     float fg_pct_home; // 4 bytes
     float ft_pct_home; // 4 bytes
     float fg3_pct_home; // 4 bytes
-    usint game_date_int; // number of days that elapsed since 01/01/1900 - 2 bytes
+    usint game_date_int; // number of days that elapsed since 01/01/1970 (UNIX time) - 2 bytes
     short pts_home; // 2 bytes
     short ast_home; // 2 bytes
     short reb_home; // 2 bytes
